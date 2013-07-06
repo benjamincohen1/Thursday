@@ -27,6 +27,13 @@ def index():
 	else:
 		return render_template("user_homepage.html")
 
+
+
+@app.route('/shopping_list')
+def shopping_list():
+   return render_template("shopping_list.html")
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 	error = None
