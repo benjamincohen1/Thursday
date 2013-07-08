@@ -13,3 +13,4 @@ Goals
 - [ ] Have a Thursday interface so people can take booze and get IOUs
 - [ ] Take requests for booze/mixers
 - [ ] Track what snacks people are bringing
+- [ ] Karma system (+ for bringing, - for taking)
