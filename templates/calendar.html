@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block body %}
+Welcome to the calendar.
+<table border="1">
+	{%for event in formattedEvents%}
+	<tr>
+		<td>{{event[0]}}</td>
+		<td>{{event[1]}}</td>
+	</tr>
+	{% endfor %}
+</table>
+
+{% endblock %}

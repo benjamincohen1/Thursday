@@ -1,6 +1,7 @@
-drop table if exists entries;
-create table entries (
-  id integer primary key autoincrement,
-  title text not null,
-  text text not null
-);
+drop table if exists events;
+CREATE TABLE "events" (
+	"id" INTEGER PRIMARY KEY  NOT NULL ,
+	 "event" VARCHAR NOT NULL ,
+	 "day" INTEGER NOT NULL ,
+	 "month" INTEGER NOT NULL ,
+	 "year" INTEGER NOT NULL )
