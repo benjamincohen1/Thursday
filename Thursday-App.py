@@ -70,6 +70,14 @@ def monthly_calendar(month):
 
 		return render_template("calendar.html", **{"formattedEvents": formattedEvents})
 
+@app.route('/calendar/add')
+def monthly_calendar():
+	if not session.get('logged_in'):
+		return render_template("login.html")
+	else:
+		return render_template("new_event.html")
+
+
 
 @app.route('/')
 def index():
