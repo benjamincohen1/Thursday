@@ -4,8 +4,4 @@ CREATE TABLE "events" (
 	 "event" VARCHAR NOT NULL ,
 	 "day" INTEGER NOT NULL ,
 	 "month" INTEGER NOT NULL ,
-	 "year" INTEGER NOT NULL )
-;
-
-
-
+	 "year" INTEGER NOT NULL );
