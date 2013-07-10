@@ -2,7 +2,7 @@
 import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, \
 	 abort, render_template, flash
-import os
+import os, hashlib
 # configuration
 DATABASE = os.getcwd()+'/tmp/flaskr.db'
 DEBUG = True
@@ -38,7 +38,6 @@ def connect_db():
 
 @app.route('/calendar')
 def calendar():
-
 	if not session.get('logged_in'):
 		return render_template("home.html")
 	else:
@@ -59,8 +58,7 @@ def monthly_calendar(month):
 		return render_template("home.html")
 	else:
 		month = str(month)
-		cur = g.db.execute("SELECT * FROM events WHERE month ="+month,
-						   {'mon': month})
+		cur = g.db.execute("SELECT * FROM events WHERE month ="+month)
 		events = cur.fetchall()
 		print "Events: "
 		formattedEvents = []
@@ -92,16 +90,63 @@ def index():
 def shopping_list():
    return render_template("shopping_list.html")
 
+@app.route('/users')
+def show_users():
+	if session['logged_in_admin']:
+		query = "SELECT username, admin from users"
+		cur = g.db.execute(query)
+		userList = [x for x in cur.fetchall()]
+		return render_template('users.html', **{'users': userList})
+	else:
+		error = "You must be an admin to visit that page!"
+		return render_template('user_homepage.html', error = error)
+
+@app.route('/users/add', methods = ['POST', 'GET'])
+def add_user_form():
+	if session['logged_in_admin']:
+			return render_template('new_user.html')
+	else:
+		error = "You must be an admin to visit that page!"
+		return redirect('user_homepage.html')
+
+@app.route('/users/useradd',  methods = ['POST', 'GET'])
+def add_user():
+	if request.method == 'POST':
+		print request.form
+		username = request.form["username"]
+		passwd = hashlib.md5(request.form["password"]).hexdigest()
+		admin = "admin" in request.form
+		cur = g.db.execute("SELECT * from USERS where username = '"+username+"'")
+		if cur.fetchone() != None:
+			error = "User already exists"
+			return render_template('new_user.html', error = error)
+		else:
+			query = "INSERT INTO users (username, password, admin)\
+					 VALUES ('"+str(username)+"', '"+str(passwd)+"', '"+str(admin)+"')"
+			print query
+			g.db.execute(query)
+			g.db.commit()
+			return redirect("/users")
+	
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 	error = None
 	if request.method == 'POST':
-		if request.form['username'] != app.config['USERNAME']:
+		print "Trying to Auth user: " + request.form["username"]
+		query = "SELECT * from users WHERE username = '"+request.form["username"]+"'"
+		cur = g.db.execute(query)
+		print query
+		result = cur.fetchone()
+		passwd = hashlib.md5(request.form["password"]).hexdigest()
+		print passwd
+		if result == None:
 			error = 'Invalid username'
-		elif request.form['password'] != app.config['PASSWORD']:
-			error = 'Invalid password'
+		elif passwd != result[2]:
+			error = 'Invalid password for given username.'
 		else:
+			session['logged_in_admin'] = result[3]
 			session['logged_in'] = True
 			#flash('You were logged in')
 			return render_template('user_homepage.html')

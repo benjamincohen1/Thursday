@@ -5,3 +5,9 @@ CREATE TABLE "events" (
 	 "day" INTEGER NOT NULL ,
 	 "month" INTEGER NOT NULL ,
 	 "year" INTEGER NOT NULL );
+drop table if exists karma;
+CREATE TABLE "users" (
+	"id" INTEGER PRIMARY KEY  NOT NULL , 
+	"username" VARCHAR NOT NULL  UNIQUE , 
+	"password" VARCHAR NOT NULL , 
+	"admin" BOOL NOT NULL  DEFAULT False);

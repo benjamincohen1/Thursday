@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block body %}
+<h2>New User</h2>
+{% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
+
+
+<form name="new_user" action="/users/useradd" method="POST">
+
+ <dl>
+      <dt>Username:
+      <dd><input type=text name=username>
+      <dt>Password:
+      <dd><input type=password name=password>
+      <dt> Admin?
+      <dd><input type=checkbox name=admin>
+
+      <dd><input type=submit value=Add>
+    </dl>
+</form>
+
+
+{% endblock %}
