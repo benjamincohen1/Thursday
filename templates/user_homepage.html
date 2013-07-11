@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
+{% if error %}
+<p class=error><strong>Error:</strong> {{ error }}{% endif %}</p>
 <body>
 	Welcome to Thursdays, bitches.  You are logged in.  
 </body>
@@ -9,6 +11,7 @@
 	<li>Drink</li>
 	<li>Drink More</li>
 	<li><a href = {{url_for('calendar')}}>View the calendar</a></li>
+	<li><a href = {{url_for('show_users')}}>View Users</a></li>
 
 
 </ul>

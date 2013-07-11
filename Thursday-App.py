@@ -103,11 +103,11 @@ def show_users():
 
 @app.route('/users/add', methods = ['POST', 'GET'])
 def add_user_form():
-	if session['logged_in_admin']:
+	if session['logged_in_admin'] == True:
 			return render_template('new_user.html')
 	else:
 		error = "You must be an admin to visit that page!"
-		return redirect('user_homepage.html')
+		return render_template('user_homepage.html', error = error)
 
 @app.route('/users/useradd',  methods = ['POST', 'GET'])
 def add_user():
@@ -146,9 +146,13 @@ def login():
 		elif passwd != result[2]:
 			error = 'Invalid password for given username.'
 		else:
-			session['logged_in_admin'] = result[3]
+			if result[3] == 'True':
+				session['logged_in_admin'] = True
+			else:
+				session['logged_in_admin'] = False
 			session['logged_in'] = True
 			#flash('You were logged in')
+
 			return render_template('user_homepage.html')
 	return render_template('login.html', error=error)
 
