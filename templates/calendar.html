@@ -2,12 +2,20 @@
 {% block body %}
 Welcome to the calendar.
 <table border="1">
+	<tr>
+		<td><b>Event Name</b></td>
+		<td><b>Event Date</b></td>
+		<td><b>Big Event</b></td>
+	</tr>
 	{%for event in formattedEvents%}
 	<tr>
 		<td>{{event[0]}}</td>
 		<td>{{event[1]}}</td>
+		<td>{{event[2]}}</td>
+
 	</tr>
 	{% endfor %}
 </table>
+<p><a href = {{url_for('add_event')}}>Click here to add a new event</a></p>
 
 {% endblock %}

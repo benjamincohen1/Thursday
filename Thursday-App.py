@@ -47,8 +47,7 @@ def calendar():
 		formattedEvents = []
 		for event in events:
 			formattedEvents.append((str(event[1]), str(event[3])\
-									+"/"+str(event[2])+"/"+str(event[4])))
-
+									+"/"+str(event[2])+"/"+str(event[4]), str(event[5])))
 		return render_template("calendar.html", **{"formattedEvents": formattedEvents})
 
 
@@ -69,13 +68,42 @@ def monthly_calendar(month):
 		return render_template("calendar.html", **{"formattedEvents": formattedEvents})
 
 @app.route('/calendar/add')
-def monthly_calendar():
-	if not session.get('logged_in'):
-		return render_template("login.html")
+def add_event():
+	if not session.get('logged_in_admin'):
+		error = "You must be an admin to visit that page!"
+		return render_template('user_homepage.html', error = error)
 	else:
 		return render_template("new_event.html")
 
 
+@app.route('/calendar/new_event', methods = ['POST', 'GET'])
+def commit_event():
+	if not session.get('logged_in_admin'):
+			error = "You must be an admin to visit that page!"
+			return render_template('user_homepage.html', error = error)
+	else:
+		event_name = request.form['name']
+		month, day, year = request.form['date'].split("/")
+		big = 'big' in request.form
+
+		query = "SELECT * FROM events WHERE day ='"+day+"' AND month = '"+month\
+				+"' AND year = '"+year+"'"
+		cur = g.db.execute(query)
+		exists = cur.fetchone() != None
+		if exists:
+			flash("There is already an event scheduled for the\
+				  date you attempted.  Please try again.")
+
+			return redirect('/calendar')
+		else:
+			values = (event_name, day, month, year, big)
+			values = tuple([str(x) for x in values])
+			query = "INSERT INTO events (event, day, month, year, big)\
+					 VALUES "+str(values)
+			print query
+			cur = g.db.execute(query)
+			g.db.commit()
+			return redirect("/calendar")
 
 @app.route('/')
 def index():
@@ -108,6 +136,7 @@ def add_user_form():
 	else:
 		error = "You must be an admin to visit that page!"
 		return render_template('user_homepage.html', error = error)
+
 
 @app.route('/users/useradd',  methods = ['POST', 'GET'])
 def add_user():

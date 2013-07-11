@@ -2,32 +2,18 @@
 {% block body %}
 <p>Fill out the form below to add a new event.</p>
 
-<table>
-    <tbody><tr>
-        <td>
-        Event Name:
-        </td>
-        <td>
-            <input type="text" id="firstname">
-        </td>
-    </tr>
-    <tr>
-        <td>
-        Event Date:
-        </td>
-        <td>
-            <input type="text" id="lastname">
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2">
-        <input type="checkbox" id="updates" value="receive">
-        Check here if this is a "big" themed event:
-        </td>
-    </tr>
-    </tbody></table>
-    <input type="submit" value="Submit">
-    </form>
+<form name="new_user" action="{{url_for('commit_event')}}" method="POST">
+
+    <dl>
+      <dt>Event Name:
+      <dd><input type=text name=name>
+      <dt>Date:
+      <dd><input type=text id = datepicker name=date>
+      <dt> Is this a "big" event?
+      <dd><input type=checkbox name=big>
+      <dd><input type=submit value=Add>
+    </dl>
+</form>
 
 
 {% endblock %}
