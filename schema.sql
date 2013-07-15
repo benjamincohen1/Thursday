@@ -16,6 +16,11 @@ CREATE TABLE `users` (
 	`admin` BOOL NOT NULL  DEFAULT False);
 
 
+INSERT INTO Users( username, password, admin ) VALUES
+   ("Ben", "5f4dcc3b5aa765d61d8327deb882cf99", "true" ),
+   ("Lee", "5f4dcc3b5aa765d61d8327deb882cf99", "true" );
+
+
 DROP TABLE IF EXISTS ShoppingList;
 CREATE TABLE ShoppingList (
    id INTEGER PRIMARY KEY AUTOINCREMENT,
