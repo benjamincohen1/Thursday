@@ -21,5 +21,5 @@ CREATE TABLE ShoppingList (
    id INTEGER PRIMARY KEY AUTOINCREMENT,
    item_name STRING NOT NULL,
    quantity INTEGER NOT NULL,
-   string NOT NULL
+   status string NOT NULL
 );

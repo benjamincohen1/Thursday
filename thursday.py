@@ -121,11 +121,28 @@ def index():
 
 
 
-@app.route('/shopping/list')
+
+# conforms to REST (sortof)
+@app.route('/shopping/list', methods=["POST", "GET"])
 def shopping_list():
    
+   if request.method == "POST":
+	  
+	  print "posting" 
+	  if "id" in request.form:
+		 pass # this is an update request
+
+	  else:
+		 print "posting"
+		 lst = shoppinglist.ShoppingList() 
+		 lst.add( request.form )
+   
+		 
+		  
+    
    s = shoppinglist.ShoppingList()  
    return render_template("shopping_list.html")
+	  
 
 @app.route('/users')
 def show_users():

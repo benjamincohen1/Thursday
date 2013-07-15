@@ -3,14 +3,16 @@
 <body>
    Shopping List Placeholder   
 
-   <form method="PUT">
+   <form method="POST">
 	  <input type="text" name="item_name" placeholder="Item Name" />
 	  <input type="number" name="quantity" placeholder="quantity" />
 	  <select name="status">
-		 <option value="stocked">Stocked</option> 
+		 <option value="inStock">Stocked</option> 
 		 <option value="requested">Requested</option> 
-		 <option value="buy_later">Buy Later</option> 
+		 <option value="toBuy">Buy Later</option> 
 	  </select>
+
+	  <input type="submit" value="add item" />
 
 	   	    
    </form>
