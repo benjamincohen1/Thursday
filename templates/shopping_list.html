@@ -2,5 +2,17 @@
 {% block body %}
 <body>
    Shopping List Placeholder   
+
+   <form method="PUT">
+	  <input type="text" name="item_name" placeholder="Item Name" />
+	  <input type="number" name="quantity" placeholder="quantity" />
+	  <select name="status">
+		 <option value="stocked">Stocked</option> 
+		 <option value="requested">Requested</option> 
+		 <option value="buy_later">Buy Later</option> 
+	  </select>
+
+	   	    
+   </form>
 </body>
 {% endblock %}

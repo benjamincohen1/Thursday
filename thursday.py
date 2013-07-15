@@ -3,12 +3,19 @@ import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, \
 	 abort, render_template, flash
 import os, hashlib
+import shoppinglist
+
 # configuration
 DATABASE = os.getcwd()+'/tmp/flaskr.db'
+
+
+
 DEBUG = True
 SECRET_KEY = 'development key'
 USERNAME = 'admin'
 PASSWORD = 'default'
+
+
 # create our little application :)
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -114,8 +121,10 @@ def index():
 
 
 
-@app.route('/shopping_list')
+@app.route('/shopping/list')
 def shopping_list():
+   
+   s = shoppinglist.ShoppingList()  
    return render_template("shopping_list.html")
 
 @app.route('/users')

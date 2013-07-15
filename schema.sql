@@ -12,3 +12,12 @@ CREATE TABLE "users" (
 	"username" VARCHAR NOT NULL  UNIQUE , 
 	"password" VARCHAR NOT NULL , 
 	"admin" BOOL NOT NULL  DEFAULT False);
+
+
+DROP TABLE IF EXISTS ShoppingList;
+CREATE TABLE ShoppingList (
+   id INTEGER PRIMARY KEY AUTOINCREMENT,
+   item_name STRING NOT NULL,
+   quantity INTEGER NOT NULL,
+   string NOT NULL
+);
