@@ -15,7 +15,9 @@ class ShoppingList:
 
 	  rst = self.cursor.execute( "SELECT status, item_name, quantity  FROM  ShoppingList")
 	  
-	  for row in rst:
+	  # go through all the rows in ShoppingList and bucket the results
+	  # based on the status column
+   	  for row in rst:
 		 bucket = row[0] 
 		 item = {
 			"item_name": row[1],
@@ -36,6 +38,11 @@ class ShoppingList:
 
    
    
+   # add a given item to the SHoppingList in the datbase
+   # values -- a dictionary with at least the following keys
+   #  item_name
+   #  quantity
+   #  status
    def add( self,values ):
 	  conn = thursday.connect_db()
 	  cursor = conn.cursor()
@@ -43,6 +50,8 @@ class ShoppingList:
 	  cursor.execute( query , values )
 	  conn.commit()
 	  conn.close()
+
+	  # TODO this should alter the actual object as well as the database
 
 	   
 	     
