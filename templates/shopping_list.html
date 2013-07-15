@@ -3,6 +3,26 @@
 <body>
    Shopping List Placeholder   
 
+   <ul>
+   {% for item in shopping_list.toBuy %}
+	  <li>{{ item.item_name }} (buy)</li> 
+   {% endfor %}
+   </ul>
+
+
+   <ul>
+   {% for item in shopping_list.inStock %}
+	  <li>{{ item.item_name }} (stocked)</li> 
+   {% endfor %}
+   </ul>
+
+
+   <ul>
+   {% for item in shopping_list.requested %}
+	  <li>{{ item.item_name }} (requested )</li> 
+   {% endfor %}
+   </ul>
+
    <form method="POST">
 	  <input type="text" name="item_name" placeholder="Item Name" />
 	  <input type="number" name="quantity" placeholder="quantity" />

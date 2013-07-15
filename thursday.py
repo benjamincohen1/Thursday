@@ -136,12 +136,10 @@ def shopping_list():
 		 print "posting"
 		 lst = shoppinglist.ShoppingList() 
 		 lst.add( request.form )
-   
-		 
 		  
     
-   s = shoppinglist.ShoppingList()  
-   return render_template("shopping_list.html")
+   s = shoppinglist.ShoppingList()
+   return render_template("shopping_list.html", shopping_list=s)
 	  
 
 @app.route('/users')

@@ -13,10 +13,26 @@ class ShoppingList:
 
 	  self.cursor = thursday.connect_db()
 
-	  rst = self.cursor.execute( "SELECT * FROM  ShoppingList")
+	  rst = self.cursor.execute( "SELECT status, item_name, quantity  FROM  ShoppingList")
 	  
 	  for row in rst:
-		 print row
+		 bucket = row[0] 
+		 item = {
+			"item_name": row[1],
+			"quantity": row[2]
+		 }
+
+		 if str(bucket) == "inStock":
+			self.inStock.append( item )
+		 elif str(bucket) == "toBuy":
+			self.toBuy.append( item )
+		 elif str(bucket) == "requested":
+			self.requested.append( item )
+		 
+
+		 print item
+
+
 
    
    
