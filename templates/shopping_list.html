@@ -7,13 +7,14 @@
 	  <li class="shopping-item"
 		 data-name="{{item.item_name}}" 
 		 data-status="toBuy" 
-		 data-quantity={{item.quantity}}>
+		 data-quantity={{item.quantity}}
+		 data-id="{{item.id}}">
 	  
 		 {{ item.item_name }} (buy)
 		  
 		 <a data-name="{{item.item_name}}" 
 			data-type="toBuy"
-			href="#">edit</a>
+			href="#" class="trigger-edit">edit</a>
 	  </li> 
    {% endfor %}
    </ul>
@@ -24,10 +25,11 @@
 	  <li class="shipping-item"
 		 data-name="{{item.item_name}}" 
 		 data-status="inStock" 
-		 data-quantity={{item.quantity}}>
+		 data-quantity={{item.quantity}}
+		 data-id="{{item.id}}">
 		 
 		 {{ item.item_name }} (stocked)
-		 <a href="#">edit</a>
+		 <a href="#" class="trigger-edit">edit</a>
 	  </li> 
    {% endfor %}
    </ul>
@@ -38,13 +40,14 @@
 	  <li class="shopping-item"
 		 data-name="{{item.item_name}}" 
 		 data-status="requested" 
-		 data-quantity={{item.quantity}}>
+		 data-quantity={{item.quantity}}
+		 data-id="{{item.id}}">
 		 
 		
 		 {{ item.item_name }} (requested )
 		 <a data-name="{{item.item_name}}" 
 			data-type="{{item.status}}"
-			href="#">edit</a>
+			href="#" class="trigger-edit">edit</a>
 	  </li> 
    {% endfor %}
    </ul>
