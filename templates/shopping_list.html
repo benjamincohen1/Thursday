@@ -4,21 +4,48 @@
 
    <ul>
    {% for item in shopping_list.toBuy %}
-	  <li>{{ item.item_name }} (buy)</li> 
+	  <li class="shopping-item"
+		 data-name="{{item.item_name}}" 
+		 data-status="toBuy" 
+		 data-quantity={{item.quantity}}>
+	  
+		 {{ item.item_name }} (buy)
+		  
+		 <a data-name="{{item.item_name}}" 
+			data-type="toBuy"
+			href="#">edit</a>
+	  </li> 
    {% endfor %}
    </ul>
 
 
    <ul>
    {% for item in shopping_list.inStock %}
-	  <li>{{ item.item_name }} (stocked)</li> 
+	  <li class="shipping-item"
+		 data-name="{{item.item_name}}" 
+		 data-status="inStock" 
+		 data-quantity={{item.quantity}}>
+		 
+		 {{ item.item_name }} (stocked)
+		 <a href="#">edit</a>
+	  </li> 
    {% endfor %}
    </ul>
 
 
    <ul>
    {% for item in shopping_list.requested %}
-	  <li>{{ item.item_name }} (requested )</li> 
+	  <li class="shopping-item"
+		 data-name="{{item.item_name}}" 
+		 data-status="requested" 
+		 data-quantity={{item.quantity}}>
+		 
+		
+		 {{ item.item_name }} (requested )
+		 <a data-name="{{item.item_name}}" 
+			data-type="{{item.status}}"
+			href="#">edit</a>
+	  </li> 
    {% endfor %}
    </ul>
 
