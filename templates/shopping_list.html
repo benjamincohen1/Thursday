@@ -15,6 +15,9 @@
 		 <a data-name="{{item.item_name}}" 
 			data-type="toBuy"
 			href="#" class="trigger-edit">edit</a>
+
+		 <a href="">delete</a>
+		  
 	  </li> 
    {% endfor %}
    </ul>
@@ -30,6 +33,8 @@
 		 
 		 {{ item.item_name }} (stocked)
 		 <a href="#" class="trigger-edit">edit</a>
+
+		 <a href="">delete</a>
 	  </li> 
    {% endfor %}
    </ul>
@@ -48,6 +53,9 @@
 		 <a data-name="{{item.item_name}}" 
 			data-type="{{item.status}}"
 			href="#" class="trigger-edit">edit</a>
+
+		 <a href="#">delete</a>
+
 	  </li> 
    {% endfor %}
    </ul>
