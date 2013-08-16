@@ -28,3 +28,13 @@ CREATE TABLE ShoppingList (
    quantity INTEGER NOT NULL,
    status string NOT NULL
 );
+DROP TABLE IF EXISTS bar;
+CREATE TABLE bar(
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	item_name STRING NOT NULL,
+	size STRING NOT NULL,
+	quantity INTEGER NOT NULL DEFAULT 0,
+	owner VARCHAR NOT NULL,
+	FOREIGN KEY(owner) REFERENCES users(username)
+
+);
