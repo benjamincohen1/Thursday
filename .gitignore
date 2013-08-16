@@ -1,1 +1,2 @@
 tmp/flaskr.db
+*.pyc
